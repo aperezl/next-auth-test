@@ -14,8 +14,7 @@ query GetUser($token: String!) {
 `;
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZWZmMGUwODc2ZGRjMjllZTIxYjcwMiIsIm5hbWUiOiJBbnRvbmlvIE1hbnVlbCBQw6lyZXogTMOzcGV6IiwiZW1haWwiOiJhcGVyZXpsQGdtYWlsLmNvbSIsImVtYWlsVmVyaWZpZWQiOm51bGwsImltYWdlIjoiaHR0cHM6Ly9hdmF0YXJzLmdpdGh1YnVzZXJjb250ZW50LmNvbS91LzE3NTgzNDk_dj00IiwiaWF0IjoxNjQzMTE4NzY2fQ.3GThD0x2NpHIXufJuiPFrCelOgBAM2mVWPWtLDXbBF4";
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZWZmMGUwODc2ZGRjMjllZTIxYjcwMiIsIm5hbWUiOiJBbnRvbmlvIE1hbnVlbCBQw6lyZXogTMOzcGV6IiwiZW1haWwiOiJhcGVyZXpsQGdtYWlsLmNvbSIsImVtYWlsVmVyaWZpZWQiOm51bGwsImltYWdlIjoiaHR0cHM6Ly9hdmF0YXJzLmdpdGh1YnVzZXJjb250ZW50LmNvbS91LzE3NTgzNDk_dj00IiwiaWF0IjoxNjQzMTQxMTA1fQ.QF-yGOMiYyigRrlacH8cuPs8UDhq99BGDhjxpcJhJoI";
 export default function Home({ fallback, getUser }) {
 
   console.log({ fallback });;
@@ -28,6 +27,7 @@ export default function Home({ fallback, getUser }) {
 }
 
 export async function getServerSideProps(context) {
+  console.log(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql`);
   const data = await request(
     `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql`,
     GETUSER,
@@ -38,12 +38,7 @@ export async function getServerSideProps(context) {
   console.log({ data: data });
   return {
     props: {
-      fallback: {
-        '/api/graphql': {
-          getUser: { id: 1 }
-        }
-      },
-      getUser: data.getUser
+      getUser: data.getUser,
     },
   };
 }

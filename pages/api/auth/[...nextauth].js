@@ -16,6 +16,7 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
+  secret: process.env.SECRET,
   jwt: {
     // A secret to use for key generation. Defaults to the top-level `secret`.
     secret: process.env.SECRET,
@@ -26,10 +27,7 @@ export default NextAuth({
       return token;
     },
     async session({ session, user, token }) {
-      const clientToken = jwt.sign(
-        user,
-        process.env.SECRET,
-      );
+      const clientToken = jwt.sign(user, process.env.SECRET);
 
       session.token = clientToken;
       return session;
