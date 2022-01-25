@@ -28,9 +28,13 @@ export default function Home({ fallback, getUser }) {
 }
 
 export async function getServerSideProps(context) {
-  const data = await request(`${process.env.VERCEL_URL}/api/graphql`, GETUSER, {
-    token,
-  });
+  const data = await request(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql`,
+    GETUSER,
+    {
+      token,
+    }
+  );
   console.log({ data: data });
   return {
     props: {
