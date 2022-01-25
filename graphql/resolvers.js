@@ -4,11 +4,15 @@ console.log({ s: process.env.SECRET });
 export const resolvers = {
   Query: {
     getUser: async (_, { token }, ctx) => {
-      return await jwt.verify(
-        token,
-        process.env.SECRET || "INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw"
-      );
-
+      // return await jwt.verify(
+      //   token,
+      //   process.env.SECRET || "INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw"
+      // );
+      return {
+        id: "1",
+        name: "John Doe",
+        email: "example.com",
+      };
     },
     // Mutation: {},
   },
