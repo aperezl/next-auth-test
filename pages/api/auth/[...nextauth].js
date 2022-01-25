@@ -18,7 +18,7 @@ export default NextAuth({
   ],
   jwt: {
     // A secret to use for key generation. Defaults to the top-level `secret`.
-    secret: "INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw",
+    secret: process.env.SECRET,
     maxAge: 60 * 60 * 24 * 30,
   },
   callbacks: {
@@ -28,7 +28,7 @@ export default NextAuth({
     async session({ session, user, token }) {
       const clientToken = jwt.sign(
         user,
-        "INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw"
+        process.env.SECRET,
       );
 
       session.token = clientToken;
