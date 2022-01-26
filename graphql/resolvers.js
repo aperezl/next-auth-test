@@ -8,11 +8,9 @@ export const resolvers = {
       //   token,
       //   process.env.SECRET || "INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw"
       // );
-      return {
-        id: "1",
-        name: "John Doe",
-        email: "example.com",
-      };
+      const user = await ctx.db.user.findFirst();
+      console.log({ user });
+      return user;
     },
     // Mutation: {},
   },
