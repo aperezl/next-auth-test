@@ -1,30 +1,14 @@
 import useSWR from "swr";
 
 export default function Test({ getUser }) {
-  const GETUSER = `
-    query GetUser($token: String!) {
-      getUser(token: $token) {
-        id
-        email
-        name
-        created
-      }
-    }`;
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZWZmMGUwODc2ZGRjMjllZTIxYjcwMiIsIm5hbWUiOiJBbnRvbmlvIE1hbnVlbCBQw6lyZXogTMOzcGV6IiwiZW1haWwiOiJhcGVyZXpsQGdtYWlsLmNvbSIsImVtYWlsVmVyaWZpZWQiOm51bGwsImltYWdlIjoiaHR0cHM6Ly9hdmF0YXJzLmdpdGh1YnVzZXJjb250ZW50LmNvbS91LzE3NTgzNDk_dj00IiwiaWF0IjoxNjQzMTQxMTA1fQ.QF-yGOMiYyigRrlacH8cuPs8UDhq99BGDhjxpcJhJoI";
-  const { data, error } = useSWR([GETUSER, { token }], {
-    fallbackData: { getUser },
-  });
-  console.log({ data, error });
   return (
     <>
       <h1>Test</h1>
-      {data && data.getUser && (
+      {getUser && (
         <>
-          <p>{data.getUser.id}abc</p>
-          <p>{data.getUser.name}</p>
-          <p>{data.getUser.email}</p>
+          <p>{getUser.id}abc</p>
+          <p>{getUser.name}</p>
+          <p>{getUser.email}</p>
         </>
       )}
     </>
