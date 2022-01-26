@@ -1,6 +1,7 @@
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
 import { request } from "graphql-request";
+import "../styles/globals.css";
 
 const fetcher = (query, variables) => request("/api/graphql", query, variables);
 

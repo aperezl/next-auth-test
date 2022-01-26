@@ -32,19 +32,23 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  console.log(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql`);
-  const data = await request(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql`,
-    GETUSER,
-    {
-      token,
-    }
-  );
-  console.log({ data });
-  return {
-    props: data,
-    revalidate: 1,
-  };
+  try {
+    const data = await request(
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/graphql`,
+      GETUSER,
+      {
+        token,
+      }
+    );;;
+    return {
+      props: data,
+      revalidate: 1,
+    };;;
+  } catch (e) {
+    return {};;
+  }
+  
+
 }
 
 export async function getStaticPaths() {
