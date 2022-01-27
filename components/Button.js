@@ -2,7 +2,7 @@ import tw, { styled } from "twin.macro";
 
 const Container = styled.div(({ hasBg }) => [
   tw`flex w-full`, // Add base styles first
-  hasBg && tw`bg-black`, // Then add conditional styles
+  tw`bg-gray-500`,
 ]);
 
 export const Wrapper = tw.section`flex w-full`;

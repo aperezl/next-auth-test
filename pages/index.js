@@ -1,7 +1,7 @@
 import Login from "../components/login";
 import Test from "../components/test";
 import { request } from "graphql-request";
-import { Wrapper, Column, Component } from "../components/Button";
+import { Component } from "../components/Button";
 import useSWR from "swr";
 
 
@@ -25,9 +25,7 @@ export default function Home(props) {
 
   return (
     <div>
-      <Wrapper>xxx</Wrapper>
-      <Column>xxxx</Column>
-      <Component>..dd</Component>
+      <Component></Component>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Login />
       <Test getUser={props.getUser} />
