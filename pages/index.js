@@ -25,7 +25,6 @@ export default function Home(props) {
 
   return (
     <div>
-      <Title>Hello Next.js</Title>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Login />
       <Test getUser={props.getUser} />
