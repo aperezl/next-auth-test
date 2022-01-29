@@ -32,7 +32,7 @@ export default function MostOrdered() {
       <hr tw="border-gray-700" />
       <div tw="flex flex-col gap-y-4">
         {mostOrdered.map(order =>(
-          <div tw="flex gap-x-4 items-center">
+          <div key={order.name} tw="flex gap-x-4 items-center">
             <img tw="w-14 h-14" src={order.image} />
             <div tw="flex flex-col gap-y-0.5">
               <div tw="text-sm font-medium text-white">{order.name}</div>

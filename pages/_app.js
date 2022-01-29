@@ -2,7 +2,7 @@ import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
 import { request } from "graphql-request";
 // import "../styles/globals.css";
-import GlobalStyles from "./../components/GlobalStyles";
+import GlobalStyles from "components/Dashboard/GlobalStyles";
 
 const fetcher = (query, variables) => request("/api/graphql", query, variables);
 
