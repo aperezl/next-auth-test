@@ -1,11 +1,29 @@
-import { PrismaClient } from ".prisma/client";
 import { prisma } from "../lib/prisma";
 import jwt from "jsonwebtoken";
+import { authOptions } from "pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth/next";
 
-export async function createContext({ req }) {
-  let user;
+
+const getToken = async (req, res) => {
   const token = req.headers["authorization"];
   if (token) {
+    return token.replace("Bearer ", "").trim()
+  }
+  try {
+    const session = await getServerSession({ req, res }, authOptions)
+    return session.token
+  } catch (e) {
+    console.log('Error try get  session')
+    return null
+  }
+
+}
+
+export async function createContext({ req, res }) {
+  let user;
+  const token = await getToken(req, res)
+  if (token) {
+    console.log({ token })
     try {
       user = jwt.verify(
         token.replace("Bearer ", ""),

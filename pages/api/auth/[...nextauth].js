@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 
-export default NextAuth({
+export const authOptions = {
   adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
@@ -33,4 +33,6 @@ export default NextAuth({
       return session;
     },
   },
-});
+}
+
+export default NextAuth(authOptions);
